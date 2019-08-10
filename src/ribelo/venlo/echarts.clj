@@ -87,9 +87,9 @@
 
 (defn ->chart
   ([{:keys [series] :as opts}]
-   (assoc opts :series (->series series)))
+   (assoc opts :series (mapv ->series series)))
   ([{:keys [series] :as opts} coll]
-   (assoc opts :series (->series series coll))))
+   (assoc opts :series (mapv #(->series % coll) series))))
 
 (defn plot [{:keys [width height]
              :or   {width 900 height 400}
