@@ -1,11 +1,14 @@
 (ns ribelo.venlo.echarts
   (:require
+   [cheshire.core :as json]
+   [cuerdas.core :as str]
+   [hiccup.core :refer [html]]
    [taoensso.encore :as e]))
 
-(defn ?fn [?f elem]
+(defn- ?fn [?f elem]
   (if (fn? ?f) (?f elem) ?f))
 
-(defn reduce-opts [opts elem]
+(defn- reduce-opts [opts elem]
   (not-empty
    (reduce-kv (fn [acc k v]
                 (assoc acc k (?fn v elem)))
@@ -87,3 +90,17 @@
    (assoc opts :series (->series series)))
   ([{:keys [series] :as opts} coll]
    (assoc opts :series (->series series coll))))
+
+(defn plot [{:keys [width height]
+             :or   {width 900 height 400}
+             :as   opts}]
+  (let [id (str (java.util.UUID/randomUUID))
+        code (format "var chart = echarts.init(document.getElementById(%s));
+                      chart.setOption(%s)"
+                     id (json/generate-string (-> opts (dissoc :width) (dissoc :height))
+                                              {:key-fn str/camel}))]
+    (html
+     [:div [:div {:id id :style (format (str "width:%spx;"
+                                             "height:%spx")
+                                        width height)}]
+      [:script code]])))
