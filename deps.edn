@@ -1,0 +1,10 @@
+{:paths ["src"]
+ :deps  {net.cgrand/xforms {:mvn/version "0.19.0"}
+         clojure.java-time {:mvn/version "0.3.2"}
+         noprompt/meander  {:git/url "https://github.com/noprompt/meander"
+                            :sha     "f02dada20d8d56dc661b820d08acc94f83b14d72"}
+         ribelo/wombat     {:git/url "https://github.com/ribelo/wombat"
+                            :sha     "879b4167ff14b8ea849e76c0bff946768f024a7d"}
+         ribelo/visby      {:git/url "https://github.com/ribelo/visby"
+                            :sha     "ddcbc5e6d86fd08309b83eda7f784f89e350ba94"}}
+ }
