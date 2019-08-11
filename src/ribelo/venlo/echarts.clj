@@ -43,9 +43,9 @@
 (defn ->item-style
   ([opts]
    (->item-style opts nil))
-  ([elem {:keys [color border-color border-width border-type shadow-blur
-                 shadow-color shadow-offset-x shadow-offset-y opacity]
-          :as   opts}]
+  ([{:keys [color border-color border-width border-type shadow-blur
+            shadow-color shadow-offset-x shadow-offset-y opacity]
+     :as   opts} elem]
    (when (not-empty opts)
      (not-empty
       (reduce-kv (fn [acc k v]
@@ -56,9 +56,9 @@
 (defn ->area-style
   ([opts]
    (->item-style opts nil))
-  ([elem {:keys [color origin shadow-blur shadow-color
+  ([{:keys [color origin shadow-blur shadow-color
                  shadow-offset-x shadow-offset-y opacity]
-          :as   opts}]
+     :as   opts} elem]
    (when (not-empty opts)
      (not-empty
       (reduce-kv (fn [acc k v]
