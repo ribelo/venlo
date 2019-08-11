@@ -16,7 +16,7 @@
              :or   {width 900 height 400}
              :as   opts}]
   (let [id (str (java.util.UUID/randomUUID))
-        code (format "var chart = echarts.init(document.getElementById(%s));
+        code (format "var chart = echarts.init(document.getElementById('%s'));
                       chart.setOption(%s)"
                      id (json/generate-string (-> opts (dissoc :width) (dissoc :height))
                                               {:key-fn str/camel}))]
