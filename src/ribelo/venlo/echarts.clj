@@ -1,8 +1,5 @@
 (ns ribelo.venlo.echarts
   (:require
-   [cheshire.core :as json]
-   [cuerdas.core :as str]
-   [hiccup.core :refer [html]]
    [taoensso.encore :as e]))
 
 (defn- ?fn [?f elem]
@@ -14,6 +11,16 @@
                 (assoc acc k (?fn v elem)))
               {}
               opts)))
+
+(defn ->x-axis
+  [{:keys [kf]
+    :as   opts} coll]
+  (assoc opts :data (mapv kf coll)))
+
+(defn ->y-axis
+  [{:keys [kf]
+    :as   opts} coll]
+  (assoc opts :data (mapv kf coll)))
 
 (defn ->label
   ([opts]
@@ -74,33 +81,15 @@
                  :item-style (->item-style item-style)
                  :area-style (->area-style area-style)
                  :data       data))
-  ([{:keys [data type label item-style area-style] :as opts} coll]
+  ([{:keys [data type label item-style area-style x-axis y-axis] :as opts} coll]
    (e/assoc-some {:type      type}
                  :label      (->label label)
                  :item-style (->item-style item-style)
                  :area-style (->area-style area-style)
+                 :x-axis     (->x-axis x-axis coll)
+                 :y-axis     (->y-axis y-axis coll)
                  :data       (reduce-kv
                               (fn [acc k m]
                                 (conj acc (->data (assoc m :k k) coll)))
                               []
                               data))))
-
-(defn ->chart
-  ([{:keys [series] :as opts}]
-   (assoc opts :series (mapv ->series series)))
-  ([{:keys [series] :as opts} coll]
-   (assoc opts :series (mapv #(->series % coll) series))))
-
-(defn plot [{:keys [width height]
-             :or   {width 900 height 400}
-             :as   opts}]
-  (let [id (str (java.util.UUID/randomUUID))
-        code (format "var chart = echarts.init(document.getElementById(%s));
-                      chart.setOption(%s)"
-                     id (json/generate-string (-> opts (dissoc :width) (dissoc :height))
-                                              {:key-fn str/camel}))]
-    (html
-     [:div [:div {:id id :style (format (str "width:%spx;"
-                                             "height:%spx")
-                                        width height)}]
-      [:script code]])))

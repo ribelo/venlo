@@ -1,11 +1,4 @@
 {:paths ["src"]
  :deps  {cheshire          {:mvn/version "5.9.0"}
-         clojure.java-time {:mvn/version "0.3.2"}
          funcool/cuerdas   {:mvn/version "2.2.0"}
-         hiccup            {:mvn/version "1.0.5"}
-         net.cgrand/xforms {:mvn/version "0.19.0"}
-         ribelo/wombat     {:git/url "https://github.com/ribelo/wombat"
-                            :sha     "879b4167ff14b8ea849e76c0bff946768f024a7d"}
-         ribelo/visby      {:git/url "https://github.com/ribelo/visby"
-                            :sha     "ddcbc5e6d86fd08309b83eda7f784f89e350ba94"}}
- }
+         hiccup            {:mvn/version "1.0.5"}}}
