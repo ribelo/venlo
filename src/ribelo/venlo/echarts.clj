@@ -57,7 +57,7 @@
   ([opts]
    (->item-style opts nil))
   ([{:keys [color origin shadow-blur shadow-color
-                 shadow-offset-x shadow-offset-y opacity]
+            shadow-offset-x shadow-offset-y opacity]
      :as   opts} elem]
    (when (not-empty opts)
      (not-empty
@@ -76,13 +76,13 @@
 
 (defn ->series
   ([{:keys [data type label item-style area-style] :as opts}]
-   (e/assoc-some {:type      type}
+   (e/assoc-some opts
                  :label      (->label label)
                  :item-style (->item-style item-style)
                  :area-style (->area-style area-style)
                  :data       data))
   ([{:keys [data type label item-style area-style x-axis y-axis] :as opts} coll]
-   (e/assoc-some {:type      type}
+   (e/assoc-some opts
                  :label      (->label label)
                  :item-style (->item-style item-style)
                  :area-style (->area-style area-style)
