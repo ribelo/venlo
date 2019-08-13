@@ -2,8 +2,41 @@
   (:require
    [java-time :as jt]))
 
+(def nord
+  {:night-0  "#2e3440"
+   :night-1  "#3b4252"
+   :night-2  "#434c5e"
+   :night-3  "#4c566a"
+
+   :snow-0   "#d8dee9"
+   :snow-1   "#e5e9f0"
+   :snow-2   "#eceff4"
+
+   :frost-0  "#8fbcbb"
+   :frost-1  "#88c0d0"
+   :frost-2  "#81a1c1"
+   :frost-3  "#5e81ac"
+
+   :aurora-0 "#bf616a"
+   :aurora-1 "#d08770"
+   :aurora-2 "#ebcb8b"
+   :aurora-3 "#a3be8c"
+   :aurora-4 "#b48ead"})
+
+(def nord-palette
+  (vals (select-keys nord [:aurora-0
+                           :aurora-1
+                           :aurora-2
+                           :aurora-3
+                           :aurora-4
+                           :frost-3
+                           :night-3])))
+
+(def nord-frost-palette (vals (select-keys nord [:frost-0 :frost-1 :frost-2 :frost-3])))
+
+
 (def ant
-  {:red  "#fff1f0"
+  {:red    "#fff1f0"
    :red-1  "#fff1f0"
    :red-2  "#ffccc7"
    :red-3  "#ffa39e"
@@ -13,7 +46,7 @@
    :red-7  "#cf1322"
    :red-8  "#a8071a"
    :red-9  "#820014"
-   :red-10  "#5c0011"
+   :red-10 "#5c0011"
 
    :volcano-1  "#fff2e8"
    :volcano-2  "#ffd8bf"
@@ -24,7 +57,7 @@
    :volcano-7  "#d4380d"
    :volcano-8  "#ad2102"
    :volcano-9  "#871400"
-   :volcano-10  "#610b00"
+   :volcano-10 "#610b00"
 
    :orange-1  "#fff7e6"
    :orange-2  "#ffe7ba"
@@ -35,7 +68,7 @@
    :orange-7  "#d46b08"
    :orange-8  "#ad4e00"
    :orange-9  "#873800"
-   :orange-10  "#612500"
+   :orange-10 "#612500"
 
    :gold-1  "#fffbe6"
    :gold-2  "#fff1b8"
@@ -46,7 +79,7 @@
    :gold-7  "#d48806"
    :gold-8  "#ad6800"
    :gold-9  "#874d00"
-   :gold-10  "#613400"
+   :gold-10 "#613400"
 
    :yellow-1  "#feffe6"
    :yellow-2  "#ffffb8"
@@ -57,7 +90,7 @@
    :yellow-7  "#d4b106"
    :yellow-8  "#ad8b00"
    :yellow-9  "#876800"
-   :yellow-10  "#614700"
+   :yellow-10 "#614700"
 
    :lime-1  "#fcffe6"
    :lime-2  "#f4ffb8"
@@ -68,7 +101,7 @@
    :lime-7  "#7cb305"
    :lime-8  "#5b8c00"
    :lime-9  "#3f6600"
-   :lime-10  "#254000"
+   :lime-10 "#254000"
 
    :green-1  "#f6ffed"
    :green-2  "#d9f7be"
@@ -79,7 +112,7 @@
    :green-7  "#389e0d"
    :green-8  "#237804"
    :green-9  "#135200"
-   :green-10  "#092b00"
+   :green-10 "#092b00"
 
    :cyan-1  "#e6fffb"
    :cyan-2  "#b5f5ec"
@@ -90,7 +123,7 @@
    :cyan-7  "#08979c"
    :cyan-8  "#006d75"
    :cyan-9  "#00474f"
-   :cyan-10  "#002329"
+   :cyan-10 "#002329"
 
    :blue-1  "#e6f7ff"
    :blue-2  "#bae7ff"
@@ -101,7 +134,7 @@
    :blue-7  "#096dd9"
    :blue-8  "#0050b3"
    :blue-9  "#003a8c"
-   :blue-10  "#002766"
+   :blue-10 "#002766"
 
    :geekblue-1  "#f0f5ff"
    :geekblue-2  "#d6e4ff"
@@ -112,7 +145,7 @@
    :geekblue-7  "#1d39c4"
    :geekblue-8  "#10239e"
    :geekblue-9  "#061178"
-   :geekblue-10  "#030852"
+   :geekblue-10 "#030852"
 
    :purple-1  "#f9f0ff"
    :purple-2  "#efdbff"
@@ -123,7 +156,7 @@
    :purple-7  "#531dab"
    :purple-8  "#391085"
    :purple-9  "#22075e"
-   :purple-10  "#120338"
+   :purple-10 "#120338"
 
    :magenta-1  "#fff0f6"
    :magenta-2  "#ffd6e7"
@@ -134,7 +167,7 @@
    :magenta-7  "#c41d7f"
    :magenta-8  "#9e1068"
    :magenta-9  "#780650"
-   :magenta-10  "#520339"
+   :magenta-10 "#520339"
 
    :grey-1  "#ffffff"
    :grey-2  "#fafafa"
@@ -145,7 +178,7 @@
    :grey-7  "#8c8c8c"
    :grey-8  "#595959"
    :grey-9  "#262626"
-   :grey-10  "#000000"})
+   :grey-10 "#000000"})
 
 (defn day-of-week
   ([dt colors]
