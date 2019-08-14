@@ -184,22 +184,13 @@
   ([dt colors]
    (get (jt/as dt :day-of-week) colors))
   ([dt]
-   (day-of-week {0 (get ant :red-5)
-                 1 (get ant :orange-5)
-                 2 (get ant :yellow-5)
-                 3 (get ant :green-5)
-                 4 (get ant :blue-5)
-                 5 (get ant :purple-5)
-                 6 (get ant :magenta-5)})))
-
-(defn day-of-week-dark [dt]
-  (day-of-week dt {0 (get ant :red-3)
-                   1 (get ant :orange-3)
-                   2 (get ant :yellow-3)
-                   3 (get ant :green-3)
-                   4 (get ant :blue-3)
-                   5 (get ant :purple-3)
-                   6 (get ant :magenta-3)}))
+   (day-of-week {0 (get nord :night-3)
+                 1 (get nord :aurora-0)
+                 2 (get nord :aurora-1)
+                 3 (get nord :aurora-2)
+                 4 (get nord :aurora-3)
+                 5 (get nord :aurora-4)
+                 6 (get nord :frost-3)})))
 
 (def viridis (reverse ["#440154"
                        "#481567"
