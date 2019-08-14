@@ -182,7 +182,7 @@
 
 (defn day-of-week
   ([dt colors]
-   (get (jt/as dt :day-of-week) colors))
+   (get colors (jt/as dt :day-of-week)))
   ([dt]
    (day-of-week {0 (get nord :night-3)
                  1 (get nord :aurora-0)
