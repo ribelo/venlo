@@ -184,13 +184,13 @@
   ([dt colors]
    (get colors (jt/as dt :day-of-week)))
   ([dt]
-   (day-of-week dt {0 (get nord :night-3)
-                    1 (get nord :aurora-0)
+   (day-of-week dt {1 (get nord :aurora-0)
                     2 (get nord :aurora-1)
                     3 (get nord :aurora-2)
                     4 (get nord :aurora-3)
                     5 (get nord :aurora-4)
-                    6 (get nord :frost-3)})))
+                    6 (get nord :frost-3)
+                    7 (get nord :night-3)})))
 
 (def viridis (reverse ["#440154"
                        "#481567"
