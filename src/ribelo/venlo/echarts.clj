@@ -6,11 +6,10 @@
   (if (fn? ?f) (?f elem) ?f))
 
 (defn- reduce-opts [opts elem]
-  (not-empty
-   (reduce-kv (fn [acc k v]
-                (assoc acc k (?fn v elem)))
-              {}
-              opts)))
+  (reduce-kv (fn [acc k v]
+               (assoc acc k (?fn v elem)))
+             {}
+             opts))
 
 (defn ->x-axis
   [{:keys [kf]
@@ -34,9 +33,8 @@
             text-shadow-color text-shadow-blur text-shadow-offset-x
             text-shadow-offset-y rich]
      :as opts} elem]
-   (when (not-empty opts)
-     (when-let [label (reduce-opts opts elem)]
-       {:label label}))))
+   (when-not (nil? opts)
+     {:label (reduce-opts opts elem)})))
 
 (def ->rich ->label)
 
@@ -46,12 +44,8 @@
   ([{:keys [color border-color border-width border-type shadow-blur
             shadow-color shadow-offset-x shadow-offset-y opacity]
      :as   opts} elem]
-   (when (not-empty opts)
-     (not-empty
-      (reduce-kv (fn [acc k v]
-                   (assoc acc k (?fn v elem)))
-                 {}
-                 opts)))))
+   (when-not (nil? opts)
+     {:label (reduce-opts opts elem)})))
 
 (defn ->area-style
   ([opts]
@@ -59,12 +53,8 @@
   ([{:keys [color origin shadow-blur shadow-color
             shadow-offset-x shadow-offset-y opacity]
      :as   opts} elem]
-   (when (not-empty opts)
-     (not-empty
-      (reduce-kv (fn [acc k v]
-                   (assoc acc k (?fn v elem)))
-                 {}
-                 opts)))))
+   (when-not (nil? opts)
+     {:label (reduce-opts opts elem)})))
 
 (defn ->data [{:keys [k label item-style]} coll]
   (->> coll
