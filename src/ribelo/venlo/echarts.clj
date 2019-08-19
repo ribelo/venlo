@@ -34,7 +34,7 @@
             text-shadow-offset-y rich]
      :as opts} elem]
    (when-not (nil? opts)
-     {:label (reduce-opts opts elem)})))
+     (reduce-opts opts elem))))
 
 (def ->rich ->label)
 
@@ -45,7 +45,7 @@
             shadow-color shadow-offset-x shadow-offset-y opacity]
      :as   opts} elem]
    (when-not (nil? opts)
-     {:item-style (reduce-opts opts elem)})))
+     (reduce-opts opts elem))))
 
 (defn ->area-style
   ([opts]
@@ -54,7 +54,7 @@
             shadow-offset-x shadow-offset-y opacity]
      :as   opts} elem]
    (when-not (nil? opts)
-     {:area-style (reduce-opts opts elem)})))
+     (reduce-opts opts elem))))
 
 (defn ->data [{:keys [k label item-style]} coll]
   (->> coll
