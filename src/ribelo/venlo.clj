@@ -14,13 +14,14 @@
 (defn plot [{:keys [width height theme]
              :or   {width 900 height 400 theme "default"}
              :as   opts}]
-  (let [id (str (java.util.UUID/randomUUID))
+  (let [id   (str (java.util.UUID/randomUUID))
         code (format "var chart = echarts.init(document.getElementById('%s'), '%s');
                       chart.setOption(%s)"
                      id theme (json/generate-string (-> opts (dissoc :width) (dissoc :height))
                                                     {:key-fn str/camel}))]
     (html
-     [:div [:div {:id id :style (format (str "width:%spx;"
-                                             "height:%spx")
-                                        width height)}]
-      [:script code]])))
+      [:div [:div {:id id :style (format (str "width:%spx;"
+                                              "height:%spx"
+                                              "page-break-inside:avoid")
+                                         width height)}]
+       [:script code]])))
