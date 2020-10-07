@@ -21,7 +21,7 @@
                                                     {:key-fn str/camel}))]
     (html
       [:div [:div {:id id :style (format (str "width:%spx;"
-                                              "height:%spx"
+                                              "height:%spx;"
                                               "page-break-inside:avoid")
                                          width height)}]
        [:script code]])))
